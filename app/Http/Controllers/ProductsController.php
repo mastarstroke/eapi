@@ -31,15 +31,6 @@ class ProductsController extends Controller
         return ProductCollection::collection(Products::paginate(20));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,7 +46,6 @@ class ProductsController extends Controller
         $product->stock = $request->stock;
         $product->price = $request->price;
         $product->discount = $request->discount;
-        $product->user_id = $request->user_id;
 
         $product->save();
         
@@ -75,16 +65,6 @@ class ProductsController extends Controller
         return new ProductResource($product);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Products  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Products $product)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -95,7 +75,6 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $product)
     {
-        $this->ProductUserCheck($product);
         $request['details'] = $request->description;
         unset($request['description']);
         $product->update($request->all());
